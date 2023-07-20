@@ -159,7 +159,7 @@
             <a href="{{ asset('assets') }}/index3.html" class="brand-link">
                 <img src="{{ asset('assets') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">Inventory</span>
             </a>
 
             <!-- Sidebar -->
@@ -190,14 +190,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('warehouse.index') }}" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Warehouse
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('material.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
@@ -222,8 +214,8 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-           
-                @yield('content')
+
+            @yield('content')
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
