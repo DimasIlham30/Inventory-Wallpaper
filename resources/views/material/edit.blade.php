@@ -14,7 +14,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Material</a></li>
-              <li class="breadcrumb-item active">Tambah</li>
+              <li class="breadcrumb-item active">Ubah</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Tambah Data Material</h3>
+                <h3 class="card-title">Ubah Data Material</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
