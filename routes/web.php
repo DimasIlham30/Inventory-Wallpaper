@@ -1,9 +1,9 @@
 <?php
-
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\MaterialStockController;
-use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\MaterialAnalayzeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,16 +20,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/login_user', [LoginController::class, 'loginUser']);
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//material
+Route::get('material', [MaterialController::class,'index']);
+Route::get('material/create', [MaterialController::class,'create']);
+Route::get('material/edit/{id}', [MaterialController::class,'edit']);
+Route::get('material/delete/{id}', [MaterialController::class,'delete']);
+Route::post('material/store', [MaterialController::class,'store']);
+Route::post('material/update/{id}', [MaterialController::class,'update']);
 
-Auth::routes();
+//transaksi
+Route::get('transaksi', [TransaksiController::class,'index']);
+Route::get('transaksi/create', [TransaksiController::class,'create']);
+Route::get('transaksi/edit/{id}', [TransaksiController::class,'edit']);
+Route::get('transaksi/delete/{id}', [TransaksiController::class,'delete']);
+Route::post('transaksi/store', [TransaksiController::class,'store']);
+Route::post('transaksi/update/{id}', [TransaksiController::class,'update']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('dashboard', DashboardController::class);
-Route::resource('material', MaterialController::class);
-Route::resource('materialStock', MaterialStockController::class);
-Route::resource('warehouse', WarehouseController::class);
+//material_analyze
+Route::get('material_analyze', [MaterialAnalayzeController::class,'index']);

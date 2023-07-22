@@ -28,7 +28,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <a href="{{ route('material.create') }}" class="btn btn-success mb-3"><i class="fas fa-plus fa-fw"></i> Create data</a>
+        <a href="{{ url('material/create') }}" class="btn btn-success mb-3"><i class="fas fa-plus fa-fw"></i> Create data</a>
         <table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>

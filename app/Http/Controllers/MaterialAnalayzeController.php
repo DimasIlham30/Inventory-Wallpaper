@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MaterialController extends Controller
+class MaterialAnalayzeController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -13,27 +14,28 @@ class MaterialController extends Controller
 
     public function index()
     {
-        return view('material.index');
+        return view('materialstock.index');
     }
-
 
     public function create()
     {
-        return view('material.create');
+        return view('materialstock.create');
     }
-
 
     public function store(Request $request)
     {
         //
     }
 
+    public function show($id)
+    {
+        //
+    }
 
     public function edit($id)
     {
-        return view('material.edit');
+        //
     }
-
 
     public function update(Request $request, $id)
     {
