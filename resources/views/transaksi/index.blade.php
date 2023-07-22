@@ -64,7 +64,7 @@
                   <td>{{$item->tanggal}}</td>
                   <td>
                     @if($tipe[$item->id] == 'in')
-                      <span class="badge badge-primary">Pemasukan</span>
+                      <span class="badge badge-primary">Pembelian</span>
                     @else
                       <span class="badge badge-warning">Penjualan</span>
                     @endif

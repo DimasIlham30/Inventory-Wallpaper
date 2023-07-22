@@ -146,8 +146,9 @@ class TransaksiController extends Controller
         foreach ($transaksiItem as $key => $value) 
         {
             array_push($materialSelected, $value->material_id);
-            $materialData[$key]['qty'] = $value->qty;
+            $materialData[$value->material_id]['qty'] = $value->qty;
         }
+       // dd($materialData);
         $materialStock = DB::table('material_stock')->where('transaksi_id',$id)->first();
         return view('transaksi.edit',compact('data','material','materialSelected','materialStock','materialData'));
     }
@@ -156,11 +157,11 @@ class TransaksiController extends Controller
     {
         if($request->material_id)
         {
-            foreach ($request->material_id as $key => $value)
+            foreach ($request->qty as $key => $value)
             {
-                if($request->qty[$value] <= 0)
+                if($request->qty[$key] <= 0 && isset($request->material_id[$key]))
                 {
-                    $check = DB::table('material')->where('id',$value)->first();
+                    $check = DB::table('material')->where('id',$key)->first();
                     if($check)
                     {
                         return redirect()->back()->with('error','Gagal mengubah data qty material '.$check->nama.' masih 0, Silahkan tambahkan qty terlebih dahulu terhadap material '.$check->nama.' ');
@@ -181,12 +182,12 @@ class TransaksiController extends Controller
         {
             if($request->tipe == 'out')
             {
-                foreach ($request->material_id as $key => $value) 
+                foreach ($request->qty as $key => $value) 
                 {
-                    $check = DB::table('material')->where('id',$value)->first();
+                    $check = DB::table('material')->where('id',$key)->first();
                     if($check)
                     {
-                        if($check->stock < $request->qty[$value])
+                        if($check->stock < $request->qty[$key])
                         {
                             return redirect()->back()->with('error','Gagal mengubah data transaksi penjualan material '.$check->nama.' stock penjualan yang dimasukkan melebihi stock saat ini, Silahkan tambahkan transaksi pembelian terlebih dahulu terhadap material '.$check->nama.' ');
                         }
@@ -195,18 +196,18 @@ class TransaksiController extends Controller
             }
             $grandTotal = 0;
             $qtyTotal = 0;
-            foreach ($request->material_id as $key => $value) 
+            foreach ($request->qty as $key => $value) 
             {
-                $item = DB::table('material')->where('id',$value)->first();
+                $item = DB::table('material')->where('id',$key)->first();
                 if($item)
                 {
-                    $total = $request->qty[$value] * $item->harga;
+                    $total = $request->qty[$key] * $item->harga;
                     $grandTotal += $total;
-                    $qtyTotal += $request->qty[$value];
+                    $qtyTotal += $request->qty[$key];
                     DB::table('transaksi_item')->insert([
                         'transaksi_id'=>$id,
-                        'material_id'=>$value,
-                        'qty'=>$request->qty[$value],
+                        'material_id'=>$key,
+                        'qty'=>$request->qty[$key],
                         'total'=>$total,
                         'created_at'=>$updatedAt
                     ]);
@@ -221,22 +222,22 @@ class TransaksiController extends Controller
             DB::table('transaksi')->where('id',$id)->update(['grandTotal'=>$grandTotal,'qty'=>$qtyTotal]);
 
             //hitung ulang stock
-            foreach ($request->material_id as $key => $value) 
+            foreach ($request->qty as $key => $value) 
             {
                 $itemIn = DB::table('transaksi_item as ti')
                           ->join('transaksi as trs','trs.id','=','ti.transaksi_id')
                           ->join('material_stock as mst','mst.transaksi_id','=','trs.id')
-                          ->where('ti.material_id',$value)
+                          ->where('ti.material_id',$key)
                           ->where('mst.tipe','in')
                           ->sum('ti.qty');
                 $itemOut = DB::table('transaksi_item as ti')
                           ->join('transaksi as trs','trs.id','=','ti.transaksi_id')
                           ->join('material_stock as mst','mst.transaksi_id','=','trs.id')
-                          ->where('ti.material_id',$value)
+                          ->where('ti.material_id',$key)
                           ->where('mst.tipe','out')
                           ->sum('ti.qty');
                 $stock = $itemIn - $itemOut;
-                DB::table('material')->where('id',$value)->update(['stock'=>$stock]);
+                DB::table('material')->where('id',$key)->update(['stock'=>$stock]);
             }
             return redirect('transaksi')->with('success','Berhasil mengubah data transaksi material');
         }else

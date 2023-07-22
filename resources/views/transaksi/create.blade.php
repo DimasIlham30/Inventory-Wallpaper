@@ -46,7 +46,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Tanggal</label>
-                        <input type="date" name="tanggal" required class="form-control" placeholder="Contoh : Wallpaper dinding stiker">
+                        <input type="date" name="tanggal" required class="form-control">
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -68,6 +68,7 @@
                         <tr>
                           <th>#</th>
                           <th>Nama</th>
+                          <th>Harga</th>
                           <th>Qty</th>
                         </tr>
                         </thead>
@@ -78,6 +79,7 @@
                             <input type="checkbox" name="material_id[{{$item->id}}]" value="{{$item->id}}">
                           </td>
                           <td>{{$item->nama}}</td>
+                          <td>Rp.{{number_format($item->harga)}}</td>
                           <td>
                            <input type="number" name="qty[{{$item->id}}]" class="form-control" value="0">
                           </td>

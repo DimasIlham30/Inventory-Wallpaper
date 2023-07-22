@@ -72,6 +72,7 @@
                         <tr>
                           <th>#</th>
                           <th>Nama</th>
+                          <th>Harga</th>
                           <th>Qty</th>
                         </tr>
                         </thead>
@@ -86,8 +87,15 @@
                             @endif
                           </td>
                           <td>{{$item->nama}}</td>
+                          <td>Rp.{{number_format($item->harga)}}</td>
                           <td>
-                           <input type="number" name="qty[{{$item->id}}]" class="form-control" value="{{$materialData[$key]['qty']}}">
+                            @if(isset($materialData[$item->id]['qty']))
+                           <input type="number" name="qty[{{$item->id}}]" class="form-control" 
+                           value="{{$materialData[$item->id]['qty']}}">
+                           @else
+                            <input type="number" name="qty[{{$item->id}}]" class="form-control" 
+                           value="0">
+                           @endif
                           </td>
                         </tr>    
                         @endforeach            

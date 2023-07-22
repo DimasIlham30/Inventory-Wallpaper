@@ -50,6 +50,7 @@
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
+                  <th>Harga</th>
                   <th>Stock</th>
                   <th>Created At</th>
                   <th>Updated At</th>
@@ -61,6 +62,7 @@
                 <tr>
                   <td>{{$key+1}}</td>
                   <td>{{$item->nama}}</td>
+                  <td>Rp.{{number_format($item->harga)}}</td>
                   <td>{{$item->stock}}</td>
                   <td>{{$item->created_at}}</td>
                   <td>{{$item->updated_at}}</td>

@@ -25,7 +25,7 @@
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-6">
+          <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fa fa-clone"></i></span>
 
@@ -40,13 +40,38 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-6">
+          <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-dollar"></i></span>
-
               <div class="info-box-content">
                 <span class="info-box-text">Total Transaksi</span>
                 <span class="info-box-number">{{$transaksi}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-primary elevation-1"><i class="fa fa-arrow-right"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Pembelian</span>
+                <span class="info-box-number">
+                  Rp.{{number_format($itemIn)}}
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-arrow-left"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Penjualan</span>
+                <span class="info-box-number">Rp.{{number_format($itemOut)}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -56,7 +81,6 @@
 
           <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
-
         </div>
         <!-- /.row -->
 
