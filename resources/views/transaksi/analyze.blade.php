@@ -63,6 +63,7 @@
                     </div>
                   </form>
 
+                  @if($data['total_nilai_penjualan'] > 0)
                   <div class="row">
                     <div class="col-sm-4">
                       <p align="center"><strong>Rekap Penjualan</strong></p>
@@ -148,6 +149,9 @@
                       </table>
                     </div>
                   </div>
+                  @else
+                  <p align="center">Data di tanggal sekian tidak ditemukan</p>
+                  @endif
                 </div>
                 <!-- /.card-body -->
 

@@ -109,7 +109,11 @@ class MaterialAnalayzeController extends Controller
                                   ->where('mst.tipe','out')
                                   ->whereBetween('trs.tanggal',[$request->tanggal_awal,$request->tanggal_akhir])
                                   ->sum('ti.total');
-            $persenTase = ($nilaiPenjualan / $totalNilaiPenjulan) * 100;
+            $persenTase = 0;
+            if($nilaiPenjualan > 0)
+            {
+                $persenTase = ($nilaiPenjualan / $totalNilaiPenjulan) * 100;
+            }
             $materialData[$materialDataKey]['nilaiPenjualan'] = $nilaiPenjualan;
             //$materialData[$materialDataKey]['totalNilaiPenjulan'] = $totalNilaiPenjulan;
             $materialData[$materialDataKey]['persentase_nilai_penjualan'] = round($persenTase);
