@@ -33,7 +33,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{url('material/store')}}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{url('material/update/'.$data->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   @if($message=Session::get('error'))
@@ -46,14 +46,15 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label>Nama Material</label>
-                        <input type="text" name="nama" required class="form-control" placeholder="Contoh : Wallpaper dinding stiker">
+                        <input type="text" name="nama" value="{{$data->nama}}" required class="form-control" 
+                               placeholder="Contoh : Wallpaper dinding stiker">
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <!-- text input -->
                       <div class="form-group">
                         <label>Harga Material</label>
-                        <input type="number" name="harga" required class="form-control" placeholder="Contoh : 50000">
+                        <input type="number" name="harga" value="{{$data->harga}}" required class="form-control" placeholder="Contoh : 50000">
                       </div>
                     </div>
                   </div>

@@ -19,13 +19,11 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="shortcut icon" href="{{url('dist/img/abc.png')}}" />
+    <link rel="shortcut icon" href="{{url('assets/dist/img/abc.png')}}" />
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -52,8 +50,6 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="{{ url('home') }}" class="nav-link {{Request::segment(1) == 'home'?'active':''}}">
                                 <i class="nav-icon fa fa-home"></i>
@@ -94,11 +90,10 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        
 
             @yield('content')
             <!-- /.content -->
-        </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
