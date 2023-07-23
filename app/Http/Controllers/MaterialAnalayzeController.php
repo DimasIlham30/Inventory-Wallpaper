@@ -18,6 +18,7 @@ class MaterialAnalayzeController extends Controller
     public function index(Request $request)
     {
         $data = [];
+        $data['total_nilai_penjualan'] = 0;
         if(count($request->all()) > 0)
         {
            
