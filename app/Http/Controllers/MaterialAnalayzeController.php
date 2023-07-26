@@ -29,9 +29,9 @@ class MaterialAnalayzeController extends Controller
                           ->where('mst.tipe','out')
                           ->sum('ti.total');
             $data['total_nilai_penjualan'] = $itemIn;
-            $data['a'] = $itemIn * 50 / 100;
-            $data['b'] = $itemIn * 30 / 100;
-            $data['c'] = $itemIn * 20 / 100;
+            $data['a'] = $itemIn * 50 / 100; // kategori a
+            $data['b'] = $itemIn * 30 / 100; // kategori b
+            $data['c'] = $itemIn * 20 / 100; // kategori c
             $itemSold = DB::table('transaksi_item as ti')
                           ->join('transaksi as trs','trs.id','=','ti.transaksi_id')
                           ->join('material_stock as mst','mst.transaksi_id','=','trs.id')
@@ -39,14 +39,15 @@ class MaterialAnalayzeController extends Controller
                           ->where('mst.tipe','out')
                           ->sum('ti.qty');
             $data['total_barang_terjual'] = $itemSold;
-            $transaksi = $this->getDataTransaksi($request);
-            $data['total_transaksi'] = count($transaksi);
-            $persenTaseNilaiJual = $this->hitungPersentaseNilaiPernjualan($request);
-            $kumulatif = $this->hitungPersentaseKumulatif($persenTaseNilaiJual);
-            $kumulatifAkumulatif = $this->hitungPersentaseKumulatifAkumulatif($kumulatif);
-            $pengkategorian = $this->pengkategorian($kumulatifAkumulatif,$data);
+            $transaksi = $this->getDataTransaksi($request); // step 1 get data transaksi
+            $data['total_transaksi'] = count($transaksi); // total transaksi
+
+            $persenTaseNilaiJual = $this->hitungPersentaseNilaiPernjualan($request);// step 2 presentase nilai penjualan
+            $kumulatif = $this->hitungPersentaseKumulatif($persenTaseNilaiJual); // step 3 presentase kumulatif
+            $kumulatifAkumulatif = $this->hitungPersentaseKumulatifAkumulatif($kumulatif); // step 4 kumulatif akumlatif 
+            $pengkategorian = $this->pengkategorian($kumulatifAkumulatif,$data); // step 5 prankingan
+
             $data['data'] = $pengkategorian;
-            //dd($data);
         }
         return view('transaksi.analyze',compact('data','request'));
     }
