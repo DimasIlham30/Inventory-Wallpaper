@@ -60,9 +60,9 @@
           <!-- /.col -->
         </div>
       </form>
-      <p class="mb-0" align="center">
+     <!--  <p class="mb-0" align="center">
         <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>
